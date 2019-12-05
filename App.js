@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native';
 // import {createAppContainer} from 'react-navigation';
 // import {createStackNavigator} from 'react-navigation-stack';
 // import Dashboard from './components/Dashboard.js';
@@ -8,10 +8,19 @@ const App = props => {
   return (
     <View style={styles.body}>
       <View style={styles.subCard}>
-        <Text style={styles.text}>RateMyMeal</Text>
+        <Text style={styles.logo}>RateMyMeal</Text>
         <View style={styles.loginCard}>
-          <Text>Login</Text>
+          <TextInput style={styles.textInput} placeholder="Email" />
+          <TextInput
+            style={styles.textInput}
+            secureTextEntry={true}
+            placeholder="Password"
+          />
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.text}>Login</Text>
+          </TouchableOpacity>
         </View>
+        <Text style={styles.footer}>V.0.0.1</Text>
       </View>
     </View>
   );
@@ -31,13 +40,39 @@ const styles = StyleSheet.create({
   },
   loginCard: {
     backgroundColor: '#DAD6D6',
-    height: '90%',
+    height: '83%',
     borderRadius: 5,
   },
-  text: {
+  footer: {
+    marginTop: '4%',
+    textAlign: 'center',
+  },
+  logo: {
     fontFamily: 'Sacramento-Regular',
     color: '#227DA5',
-    fontSize: 50,
+    fontSize: 55,
+  },
+  text: {
+    fontFamily: 'Roboto-Regular',
+    textAlign: 'center',
+    color: '#fff',
+  },
+  textInput: {
+    alignSelf: 'center',
+    margin: '2%',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    width: '90%',
+    padding: 5,
+    borderRadius: 5,
+  },
+  button: {
+    borderWidth: 1,
+    alignSelf: 'center',
+    width: '30%',
+    backgroundColor: '#227DA5',
+    borderRadius: 5,
+    height: 20,
   },
 });
 
