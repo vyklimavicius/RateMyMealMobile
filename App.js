@@ -101,11 +101,7 @@ const styles = StyleSheet.create({
   //   borderRadius: 5,
   // },
   footer: {
-    // borderWidth: 1,
-    // borderColor: '#DAD6D6',
-    // borderRadius: 1,
-    // backgroundColor: '#DAD6D6',
-    marginTop: '62%',
+    marginTop: '65%',
     textAlign: 'center',
   },
   logo: {
@@ -131,7 +127,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   button: {
-    marginTop: 60,
+    marginTop: 50,
     paddingTop: 2,
     marginBottom: 10,
     borderWidth: 1,
