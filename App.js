@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: '#227DA5',
     height: '100%',
-    padding: '1%',
+    paddingTop: '2%',
+    paddingHorizontal: '2%',
   },
   subCard: {
     backgroundColor: '#fff',
