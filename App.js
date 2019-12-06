@@ -1,26 +1,82 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, View, Text, TextInput, TouchableOpacity} from 'react-native';
-// import {createAppContainer} from 'react-navigation';
-// import {createStackNavigator} from 'react-navigation-stack';
-// import Dashboard from './components/Dashboard.js';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import Dashboard from './components/Dashboard.js';
 
 const App = props => {
   return (
     <View style={styles.body}>
       <View style={styles.subCard}>
         <Text style={styles.logo}>RateMyMeal</Text>
-        <View style={styles.loginCard}>
-          <TextInput style={styles.textInput} placeholder="Email" />
-          <TextInput
-            style={styles.textInput}
-            secureTextEntry={true}
-            placeholder="Password"
-          />
-          <TouchableOpacity style={styles.button}>
+        {/* <View style={styles.loginCard}> */}
+        <ImageBackground
+          imageStyle={{borderRadius: 5}}
+          style={{
+            width: '100%',
+            height: '93%',
+            paddingTop: 20,
+          }}
+          source={require('./components/assets/main.jpg')}>
+          <View style={styles.sectionStyle}>
+            <TextInput style={{flex: 1}} placeholder="Please type your email" />
+            <Icon name="user" color="#8C8686" />
+          </View>
+          <View style={styles.sectionStyle}>
+            <TextInput
+              style={{flex: 1}}
+              secureTextEntry={true}
+              placeholder="Password"
+            />
+            <Icon name="key" color="#8C8686" />
+          </View>
+          {/* <TouchableOpacity>
+            <Text style={{alignSelf: 'center', color: '#227DA5'}}>
+              New member, sign up!
+            </Text>
+          </TouchableOpacity> */}
+          {/* <View
+            style={{
+              marginTop: 10,
+              marginHorizontal: 40,
+              width: 300,
+              borderBottomWidth: 1,
+              borderBottomColor: '#C5BBBB',
+            }}
+          /> */}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => props.navigation.navigate('Dashboard')}>
             <Text style={styles.text}>Login</Text>
           </TouchableOpacity>
-        </View>
-        <Text style={styles.footer}>V.0.0.1</Text>
+          <View style={{margin: 10, alignItems: 'center', width: 380}}>
+            <Icon.Button
+              name="user-plus"
+              backgroundColor="#227DA5"
+              onPress={null}>
+              New member, sign up!
+            </Icon.Button>
+          </View>
+          <View style={{margin: 10, alignItems: 'center', width: 380}}>
+            <Icon.Button
+              name="facebook"
+              backgroundColor="#3b5998"
+              onPress={null}>
+              Login with Facebook
+            </Icon.Button>
+          </View>
+          <Text style={styles.footer}>Vytautas Klimavicius© V.0.0.1</Text>
+        </ImageBackground>
+        {/* </View> */}
       </View>
     </View>
   );
@@ -38,13 +94,17 @@ const styles = StyleSheet.create({
     padding: '2%',
     borderRadius: 5,
   },
-  loginCard: {
-    backgroundColor: '#DAD6D6',
-    height: '83%',
-    borderRadius: 5,
-  },
+  // loginCard: {
+  //   backgroundColor: '#DAD6D6',
+  //   height: '83%',
+  //   borderRadius: 5,
+  // },
   footer: {
-    marginTop: '4%',
+    // borderWidth: 1,
+    // borderColor: '#DAD6D6',
+    // borderRadius: 1,
+    // backgroundColor: '#DAD6D6',
+    marginTop: '62%',
     textAlign: 'center',
   },
   logo: {
@@ -57,45 +117,42 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
   },
-  textInput: {
-    alignSelf: 'center',
-    margin: '2%',
+  sectionStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    height: 50,
     backgroundColor: '#fff',
     borderWidth: 1,
-    width: '90%',
+    borderColor: '#fff',
     padding: 5,
     borderRadius: 5,
   },
   button: {
+    marginTop: 60,
+    paddingTop: 2,
+    marginBottom: 10,
     borderWidth: 1,
+    borderColor: '#227DA5',
     alignSelf: 'center',
-    width: '30%',
+    width: 100,
     backgroundColor: '#227DA5',
     borderRadius: 5,
-    height: 20,
+    height: 30,
   },
 });
 
-// const AppNavigator = createStackNavigator(
-//   {
-//     Home: App,
-//     Dashboard: Dashboard,
-//   },
-//   {
-//     initialRouteName: 'Home',
-//     defaultNavigationOptions: {
-//       title: 'RateMyMeal',
-//       headertitleStyle: {
-//         fontFamily: 'Sacramento, cursive',
-//       },
-//       headerStyle: {
-//         backgroundColor: '#227DA5',
-//       },
-//       headerTintColor: '#fff',
-//     },
-//   },
-// );
+const AppNavigator = createStackNavigator(
+  {
+    Home: App,
+    Dashboard: Dashboard,
+  },
+  {
+    headerMode: 'none',
+  },
+);
 
-// export default createAppContainer(AppNavigator);
+export default createAppContainer(AppNavigator);
 
-export default App;
+// export default App;
