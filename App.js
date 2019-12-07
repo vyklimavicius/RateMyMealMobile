@@ -18,13 +18,12 @@ const App = props => {
     <View style={styles.body}>
       <View style={styles.subCard}>
         <Text style={styles.logo}>RateMyMeal</Text>
-        {/* <View style={styles.loginCard}> */}
         <ImageBackground
           imageStyle={{borderRadius: 5}}
           style={{
             width: '100%',
-            height: '93%',
-            paddingTop: 20,
+            height: '90%',
+            paddingTop: '1%',
           }}
           source={require('./components/assets/main.jpg')}>
           <View style={styles.sectionStyle}>
@@ -39,20 +38,6 @@ const App = props => {
             />
             <Icon name="key" color="#8C8686" />
           </View>
-          {/* <TouchableOpacity>
-            <Text style={{alignSelf: 'center', color: '#227DA5'}}>
-              New member, sign up!
-            </Text>
-          </TouchableOpacity> */}
-          {/* <View
-            style={{
-              marginTop: 10,
-              marginHorizontal: 40,
-              width: 300,
-              borderBottomWidth: 1,
-              borderBottomColor: '#C5BBBB',
-            }}
-          /> */}
           <TouchableOpacity
             style={styles.button}
             onPress={() => props.navigation.navigate('Dashboard')}>
@@ -76,7 +61,6 @@ const App = props => {
           </View>
           <Text style={styles.footer}>Vytautas Klimavicius© V.0.0.1</Text>
         </ImageBackground>
-        {/* </View> */}
       </View>
     </View>
   );
@@ -94,14 +78,11 @@ const styles = StyleSheet.create({
     height: '100%',
     padding: '2%',
     borderRadius: 5,
+    borderWidth: 2,
+    borderColor: '#BFBABA',
   },
-  // loginCard: {
-  //   backgroundColor: '#DAD6D6',
-  //   height: '83%',
-  //   borderRadius: 5,
-  // },
   footer: {
-    marginTop: '65%',
+    marginTop: '70%',
     textAlign: 'center',
   },
   logo: {
@@ -127,9 +108,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   button: {
-    marginTop: 50,
-    paddingTop: 2,
-    marginBottom: 10,
+    marginTop: '10%',
+    marginLeft: '5%',
+    paddingTop: '1%',
+    marginBottom: '2%',
     borderWidth: 1,
     borderColor: '#227DA5',
     alignSelf: 'center',

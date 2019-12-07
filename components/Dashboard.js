@@ -1,11 +1,32 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet, Picker, Image} from 'react-native';
 
 const Dashboard = () => {
   return (
     <View style={styles.body}>
       <View style={styles.subCard}>
-      <Text>This is the Dashboard</Text>
+        <View style={styles.navbar}>
+          <Picker
+            mode="dropdown"
+            selectedValue={null}
+            style={{height: 50, width: 100}}
+            onValueChange={null}>
+            <Picker.Item label="User" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+          </Picker>
+          <Picker
+            mode="dropdown"
+            selectedValue={null}
+            style={{height: 50, width: '50%'}}
+            onValueChange={null}>
+            <Picker.Item label="Restaurants" value="java" />
+            <Picker.Item label="JavaScript" value="js" />
+          </Picker>
+          <Image
+            style={{width: 40, height: 40, margin: '1%', marginLeft: '10%'}}
+            source={require('./assets/avatarMale.jpg')}
+          />
+        </View>
       </View>
     </View>
   );
@@ -21,21 +42,16 @@ const styles = StyleSheet.create({
   subCard: {
     backgroundColor: '#fff',
     height: '100%',
-    padding: '2%',
     borderRadius: 5,
+    borderWidth: 2,
+    borderColor: '#BFBABA',
   },
-  // loginCard: {
-  //   backgroundColor: '#DAD6D6',
-  //   height: '83%',
-  //   borderRadius: 5,
-  // },
-  footer: {
-    // borderWidth: 1,
-    // borderColor: '#DAD6D6',
-    // borderRadius: 1,
-    // backgroundColor: '#DAD6D6',
-    marginTop: '62%',
-    textAlign: 'center',
+  navbar: {
+    flexDirection: 'row',
+    height: '7%',
+    borderRadius: 2,
+    borderWidth: 2,
+    borderColor: '#BFBABA',
   },
   logo: {
     fontFamily: 'Sacramento-Regular',
