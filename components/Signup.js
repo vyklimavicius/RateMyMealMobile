@@ -67,7 +67,7 @@ const Signup = props => {
     } else if (checkavatar === false) {
       alert('Please change the default avatar!');
     } else {
-      fetch('https://ratemymealapimobile.herokuapp.com/api/v1/users', {
+      fetch('https://10.0.2.2:3000/api/v1/users/', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
