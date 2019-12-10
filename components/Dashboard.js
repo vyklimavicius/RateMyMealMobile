@@ -5,7 +5,7 @@ import avatarMale from './assets/avatarMale.jpg';
 
 const Dashboard = () => {
   useEffect(() => {
-    fetch('https://ratemymealapimobile.herokuapp.com/api/v1/users1')
+    fetch('https://ratemymealapimobile.herokuapp.com/api/v1/users/1')
       .then(response => response.json())
       // .then(data => console.log(data.name));
       .then(data => setAvatar(data.avatar.url));
