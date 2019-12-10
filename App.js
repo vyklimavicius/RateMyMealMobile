@@ -12,8 +12,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import Dashboard from './components/Dashboard.js';
+import Signup from './components/Signup.js';
 
 const App = props => {
+  //functions
+  const facebook = () => {
+    return alert('Not functional right now, sorry');
+  };
+
   return (
     <View style={styles.body}>
       <View style={styles.subCard}>
@@ -47,7 +53,7 @@ const App = props => {
             <Icon.Button
               name="user-plus"
               backgroundColor="#227DA5"
-              onPress={null}>
+              onPress={() => props.navigation.navigate('Signup')}>
               New member, sign up!
             </Icon.Button>
           </View>
@@ -55,7 +61,7 @@ const App = props => {
             <Icon.Button
               name="facebook"
               backgroundColor="#3b5998"
-              onPress={null}>
+              onPress={facebook}>
               Login with Facebook
             </Icon.Button>
           </View>
@@ -126,6 +132,7 @@ const AppNavigator = createStackNavigator(
   {
     Home: App,
     Dashboard: Dashboard,
+    Signup: Signup,
   },
   {
     headerMode: 'none',

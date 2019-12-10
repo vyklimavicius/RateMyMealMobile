@@ -1,7 +1,18 @@
-import React from 'react';
-import {View, StyleSheet, Picker, Image} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet, Picker, Image, Text} from 'react-native';
+import avatarMale from './assets/avatarMale.jpg';
 
 const Dashboard = () => {
+  useEffect(() => {
+    fetch('https://ratemymealapimobile.herokuapp.com/api/v1/users1')
+      .then(response => response.json())
+      // .then(data => console.log(data.name));
+      .then(data => setAvatar(data.avatar.url));
+  }, []);
+
+  const [avatar, setAvatar] = useState(null);
+  console.log(avatar);
   return (
     <View style={styles.body}>
       <View style={styles.subCard}>
@@ -22,10 +33,17 @@ const Dashboard = () => {
             <Picker.Item label="Restaurants" value="java" />
             <Picker.Item label="JavaScript" value="js" />
           </Picker>
-          <Image
-            style={{width: 40, height: 40, margin: '1%', marginLeft: '10%'}}
-            source={require('./assets/avatarMale.jpg')}
-          />
+          {avatar ? (
+            <Image
+              style={{width: 40, height: 40, margin: '1%', marginLeft: '10%'}}
+              source={{uri: avatar}}
+            />
+          ) : (
+            <Image
+              style={{width: 40, height: 40, margin: '1%', marginLeft: '10%'}}
+              source={avatarMale}
+            />
+          )}
         </View>
       </View>
     </View>
@@ -90,3 +108,5 @@ const styles = StyleSheet.create({
 });
 
 export default Dashboard;
+
+// setAvatar(data.avatar.url)
