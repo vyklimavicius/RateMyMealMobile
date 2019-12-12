@@ -13,6 +13,7 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import Dashboard from './components/Dashboard.js';
 import Signup from './components/Signup.js';
+import ReviewBoard from './components/ReviewBoard.js';
 
 const App = props => {
   //functions
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     fontSize: 55,
   },
   text: {
-    fontFamily: 'Roboto-Regular',
+    fontFamily: 'Roboto',
     textAlign: 'center',
     color: '#fff',
   },
@@ -133,6 +134,7 @@ const AppNavigator = createStackNavigator(
     Home: App,
     Dashboard: Dashboard,
     Signup: Signup,
+    Reviews: ReviewBoard,
   },
   {
     headerMode: 'none',
