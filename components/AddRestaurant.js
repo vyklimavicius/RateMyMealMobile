@@ -11,7 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-picker';
 
-const AddRestaurant = ({restaurantCheck}) => {
+const AddRestaurant = ({restaurantCheck, renderAgain}) => {
   const handleRestaurantImage = () => {
     const options = {
       title: 'select restaurant',
@@ -43,6 +43,7 @@ const AddRestaurant = ({restaurantCheck}) => {
       if (response.ok === true) {
         alert('New restaurant created!');
         restaurantCheck();
+        renderAgain();
       }
     });
   };

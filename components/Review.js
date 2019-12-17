@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Picker, ScrollView, Image, Text} from 'react-native';
+import {View, StyleSheet, Picker, ScrollView, Image, Text, TouchableOpacity} from 'react-native';
 import avatarMale from './assets/avatarMale.jpg';
 
 const Review = () => {

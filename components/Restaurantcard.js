@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -8,8 +8,9 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import AddReview from './AddReview.js';
 
-const Restaurantcard = ({navigation, restaurant}) => {
+const Restaurantcard = ({navigation, restaurant, avatar}) => {
   return (
     <View style={styles.subCard}>
       <Image
@@ -22,9 +23,6 @@ const Restaurantcard = ({navigation, restaurant}) => {
       <TouchableOpacity onPress={() => navigation.navigate('Reviews')}>
         <Text style={styles.textSubHeader}>View all 2,000 Reviews</Text>
       </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.textAdd}>Add a comment</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -35,7 +33,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: '#fff',
     width: '95%',
-    height: 600,
+    height: 400,
     borderRadius: 5,
     borderWidth: 4,
     borderColor: '#227DA5',
@@ -65,12 +63,6 @@ const styles = StyleSheet.create({
   },
   textMeal: {
     marginLeft: '1%',
-    fontSize: 15,
-    fontFamily: 'Roboto',
-  },
-  textAdd: {
-    marginLeft: '1%',
-    color: '#BFBABA',
     fontSize: 15,
     fontFamily: 'Roboto',
   },

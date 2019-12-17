@@ -1,8 +1,18 @@
-import React from 'react';
-import {View, StyleSheet, Picker, ScrollView, Image, Text} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet, Picker, ScrollView, Image, Text, TouchableOpacity} from 'react-native';
 import Review from './Review';
+import AddReview from './AddReview.js';
 
 const Reviews = () => {
+  const [addReview, setAddReview] = useState(false);
+
+  const reviewCheck = () => {
+    if (addReview === false) {
+      setAddReview(true);
+    } else {
+      setAddReview(false);
+    }
+  };
   return (
     <View style={styles.body}>
       <View style={styles.subCard}>
@@ -31,6 +41,10 @@ const Reviews = () => {
           <Review />
           <Review />
         </ScrollView>
+        <TouchableOpacity onPress={reviewCheck}>
+          <Text style={styles.textAdd}>Add a comment</Text>
+        </TouchableOpacity>
+        {addReview ? <AddReview addReview={reviewCheck} /> : null}
       </View>
     </View>
   );
@@ -55,6 +69,12 @@ const styles = StyleSheet.create({
   text: {
     marginLeft: '1%',
     fontSize: 14,
+    fontFamily: 'Roboto',
+  },
+  textAdd: {
+    marginLeft: '1%',
+    color: '#BFBABA',
+    fontSize: 20,
     fontFamily: 'Roboto',
   },
 });

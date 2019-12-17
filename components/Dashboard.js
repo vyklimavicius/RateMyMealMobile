@@ -7,7 +7,7 @@ import AddRestaurant from './AddRestaurant';
 
 const Dashboard = ({navigation}) => {
   useEffect(() => {
-    fetch('https://ratemymealapimobile.herokuapp.com/api/v1/users/1')
+    fetch('https://ratemymealapimobile.herokuapp.com/api/v1/users/2')
       .then(response => response.json())
       .then(data => {
         setName(data.name);
@@ -18,7 +18,7 @@ const Dashboard = ({navigation}) => {
       .then(data => {
         setRestaurants(data);
       });
-  }, [restaurants]);
+  }, []);
 
   const [avatar, setAvatar] = useState(null);
   const [name, setName] = useState('');
@@ -45,6 +45,14 @@ const Dashboard = ({navigation}) => {
       default:
         return;
     }
+  };
+
+  const handleRestaurantReload = () => {
+    fetch('https://ratemymealapimobile.herokuapp.com/api/v1/restaurants')
+      .then(response => response.json())
+      .then(data => {
+        setRestaurants(data);
+      });
   };
 
   console.log(restaurants);
@@ -99,7 +107,9 @@ const Dashboard = ({navigation}) => {
         </View>
         <Text style={styles.logo}>RateMyMeal</Text>
         {addRestaurant ? (
-          <AddRestaurant restaurantCheck={restaurantCheck} />
+          <AddRestaurant
+            restaurantCheck={restaurantCheck}
+            renderAgain={handleRestaurantReload} />
         ) : null}
         {restaurants.length > 0 ? (
           <FlatList
