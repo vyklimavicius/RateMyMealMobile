@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -14,15 +14,51 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Dashboard from './components/Dashboard.js';
 import Signup from './components/Signup.js';
 import ReviewBoard from './components/ReviewBoard.js';
+import Loading from './components/Loading.js';
 
 const App = props => {
+  //state
+  const [loadingInfo, setLoadingInfo] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   //functions
   const facebook = () => {
-    return alert('Not functional right now, sorry');
+    return alert('Coming soon...');
   };
 
-  return (
-    <View style={styles.body}>
+  const changeEmail = email => {
+    let input = email.toLowerCase();
+    setLoadingInfo({ ...loadingInfo, email: input });
+  };
+
+  const changePassword = password => {
+    setLoadingInfo({ ...loadingInfo, password: password });
+  };
+
+  const sendChange = () => {
+    fetch('https://ratemymealapimobile.herokuapp.com/api/v1/login', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({autho: loadingInfo})
+    }).then(response => response.json())
+      .then(user => {
+        if (user.errors) {
+          alert(user.errors);
+        } else {
+          setCurrentUser(user);
+          // props.navigation.navigate('Dashboard', currentUser);
+          // setLoading(true);
+          }
+      }).then(console.log(currentUser));
+  };
+    
+    console.log(currentUser);
+    
+    return (
+      <View style={styles.body}>
       <View style={styles.subCard}>
         <Text style={styles.logo}>RateMyMeal</Text>
         <ImageBackground
@@ -33,8 +69,15 @@ const App = props => {
             paddingTop: '1%',
           }}
           source={require('./components/assets/main.jpg')}>
+          <View style={{zIndex: 10, position: 'absolute', alignSelf: 'center'}}>
+            {loading ? <Loading /> : null}
+          </View>
           <View style={styles.sectionStyle}>
-            <TextInput style={{flex: 1}} placeholder="Please type your email" />
+            <TextInput
+            style={{ flex: 1 }}
+            placeholder="Please type your email" 
+            onChangeText={text => changeEmail(text)}
+            />
             <Icon name="user" color="#8C8686" />
           </View>
           <View style={styles.sectionStyle}>
@@ -42,12 +85,11 @@ const App = props => {
               style={{flex: 1}}
               secureTextEntry={true}
               placeholder="Password"
-            />
+              onChangeText={text => changePassword(text)}
+              />
             <Icon name="key" color="#8C8686" />
           </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => props.navigation.navigate('Dashboard')}>
+          <TouchableOpacity style={styles.button} onPress={sendChange}>
             <Text style={styles.text}>Login</Text>
           </TouchableOpacity>
           <View style={{margin: 10, alignItems: 'center', width: 380}}>

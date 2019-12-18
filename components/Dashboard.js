@@ -7,21 +7,17 @@ import AddRestaurant from './AddRestaurant';
 
 const Dashboard = ({navigation}) => {
   useEffect(() => {
-    fetch('https://ratemymealapimobile.herokuapp.com/api/v1/users/2')
-      .then(response => response.json())
-      .then(data => {
-        setName(data.name);
-        setAvatar(data.avatar.url);
-      });
     fetch('https://ratemymealapimobile.herokuapp.com/api/v1/restaurants')
-      .then(response => response.json())
-      .then(data => {
+    .then(response => response.json())
+    .then(data => {
         setRestaurants(data);
-      });
+    });
   }, []);
 
+  // const [avatar, setAvatar] = useState(navigation.state.params.avatar.url);
+  // const [name, setName] = useState(navigation.state.params.name);
   const [avatar, setAvatar] = useState(null);
-  const [name, setName] = useState('');
+  const [name, setName] = useState('test');
   const [restaurants, setRestaurants] = useState([]);
   const [addRestaurant, setAddRestaurant] = useState(false);
 
@@ -55,7 +51,7 @@ const Dashboard = ({navigation}) => {
       });
   };
 
-  console.log(restaurants);
+  console.log(navigation.state.params);
 
   return (
     <View style={styles.body}>
@@ -120,9 +116,6 @@ const Dashboard = ({navigation}) => {
             keyExtractor={restaurant => restaurant.id}
           />
         ) : null}
-        {/* <Restaurantcard navigation={navigation} restaurant={restaurant} /> */}
-        {/* <Restaurantcard img={avatar} />
-          <Restaurantcard img={avatar} /> */}
       </View>
     </View>
   );
